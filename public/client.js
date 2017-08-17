@@ -1,7 +1,22 @@
 console.log('js');
 
+function fibonace(num) {
+  let sequenceArr = [0, 1];
+  for (var i = 0; i <= num; i++) {
+    if (i > 1) {
+      sequenceArr.push(sequenceArr[i-2] + sequenceArr[i-1]);
+    }
+  }
+  console.log(sequenceArr);
+  return sequenceArr[num];
+}
+
+console.log(fibonace(12));
+
+
 const cameraChange = 5;
 const cameraDist = 3000;
+const elapsedTime = 1000 / 60;
 
 var mesh;
 
@@ -34,12 +49,12 @@ var font = loader.load('font.json', function(source) {
   var geometry = new THREE.TextGeometry('HOGAN', {
     font: source,
     size: 120,
-    height: 10,
+    height: 100,
     material: 0,
     bevelThickness: 1,
     extrudeMaterial: 1
   });
-  var material = new THREE.MeshLambertMaterial({color: 0x181818});
+  var material = new THREE.MeshLambertMaterial({color: 0x404040});
   var mesh = new THREE.Mesh(geometry, material);
   mesh.position.z = -1000;
   mesh.position.x = -250;
@@ -51,10 +66,10 @@ var font = loader.load('font.json', function(source) {
 requestAnimationFrame(render);
 function render() {
   // controls.update();
-
-  camera.position.x = mesh.position.x + cameraDist * Math.cos( cameraChange * elapsedTime );
-  camera.position.z = mesh.position.z + cameraDist * Math.sin( cameraChange * elapsedTime );
-  camera.lookAt( mesh.position );
+  // camera.position.x += 2;
+  // camera.position.x = cameraDist * Math.cos( cameraChange * elapsedTime );
+  // camera.position.z = cameraDist * Math.sin( cameraChange * elapsedTime );
+  // camera.lookAt( mesh.position );
 
   renderer.render( scene, camera );
 
